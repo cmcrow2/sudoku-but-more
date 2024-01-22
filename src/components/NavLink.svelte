@@ -5,6 +5,6 @@
 
 <a
 	{href}
-	class="hover:text-watermelon hover:bg-carbon-200 pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition hidden md:flex"
+	class="hover:text-watermelon hover:bg-carbon-200 hover:underline decoration-watermelon pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition hidden md:flex"
 	>{text}</a
 >
