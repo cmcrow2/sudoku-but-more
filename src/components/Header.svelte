@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import NavLink from './NavLink.svelte';
 	import 'iconify-icon';
 
@@ -7,6 +7,7 @@
 		['Editor', '/editor'],
 		['About', '/about']
 	];
+
 </script>
 
 <div
