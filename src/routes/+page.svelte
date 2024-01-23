@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from '../components/Header.svelte';
+	import Header from '../components/header/Header.svelte';
 	// import Sidebar from '../components/Sidebar.svelte';
 	import { showModal } from '../stores/modalStore';
 </script>

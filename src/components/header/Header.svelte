@@ -2,8 +2,8 @@
 	import NavLink from './NavLink.svelte';
 	import 'iconify-icon';
 	import { quintOut } from 'svelte/easing';
-	import { slide, fade } from 'svelte/transition';
-	import { showModal } from '../stores/modalStore';
+	import { slide } from 'svelte/transition';
+	import { showModal } from '../../stores/modalStore';
 
 	const links = [
 		['Puzzles', '/puzzles'],
