@@ -1,9 +1,8 @@
 <script lang="ts">
 	import NavLink from './NavLink.svelte';
-	import 'iconify-icon';
-	import { quintOut } from 'svelte/easing';
-	import { slide } from 'svelte/transition';
+	import Modal from './Modal.svelte';
 	import { showModal } from '../../stores/modalStore';
+	import 'iconify-icon';
 
 	const links = [
 		['Puzzles', '/puzzles'],
@@ -53,11 +52,6 @@
 		</div>
 	</div>
 	{#if $showModal}
-		<div
-			class="grid w-full h-full bg-watermelon overflow-hidden"
-			transition:slide={{ delay: 0, duration: 400, easing: quintOut, axis: 'y' }}
-		>
-			Hello!
-		</div>
+		<Modal />
 	{/if}
 </div>
