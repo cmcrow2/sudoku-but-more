@@ -6,26 +6,16 @@
 	import 'iconify-icon';
 </script>
 
-<div class={$showModal ? 'flex flex-col h-screen' : ''}>
+<div class={$showModal ? 'flex flex-col h-screen sticky top-0 z-50 ' : 'sticky top-0 z-50 '}>
 	<div
-		class="flex items-center justify-between flex-wrap bg-paper p-6 text-xl font-bold sticky top-0 z-50 {$showModal
+		class="flex items-center justify-between flex-wrap bg-paper p-6 text-xl font-bold {$showModal
 			? 'border-none'
 			: 'border-b border-carbon-200'}"
 	>
-		<div class="flex flex-row gap-x-2">
-			<button
-				on:click={(e) => {
-					showModal.set(!$showModal);
-				}}
-			>
-				<iconify-icon
-					icon="mingcute:menu-fill"
-					class="mr-3 pt-1 scale-150 md:hidden hover:text-watermelon hover:cursor-pointer"
-				/>
-			</button>
+		<div class="flex flex-row">
 			<a
 				href="/"
-				class="pt-2 pb-2 pl-2 pr-2 scale-125 mr-4 ml-4 hover:text-paper hover:cursor-pointer transition-all {$showModal
+				class="pt-2 pb-2 pl-2 pr-2 scale-125 mr-8 ml-4 hover:text-paper hover:cursor-pointer transition-all {$showModal
 					? 'hover:text-watermelon hover:underline decoration-watermelon'
 					: 'hover:bg-watermelon hover:text-paper bg-sky-300'}">Variance</a
 			>
@@ -33,7 +23,24 @@
 				<NavLink href={link[1]} text={link[0]} />
 			{/each}
 		</div>
-		<div class="flex-row hidden sm:flex">
+		<button
+			on:click={(e) => {
+				showModal.set(!$showModal);
+			}}
+		>
+			{#if $showModal}
+				<iconify-icon
+					icon="ph:x-bold"
+					class="mr-3 pt-1 scale-150 md:hidden hover:text-watermelon hover:cursor-pointer"
+				/>
+			{:else}
+				<iconify-icon
+					icon="mingcute:menu-fill"
+					class="mr-3 pt-1 scale-150 md:hidden hover:text-watermelon hover:cursor-pointer"
+				/>
+			{/if}
+		</button>
+		<div class="flex-row hidden md:flex">
 			<div
 				class="hover:text-watermelon hover:underline decoration-watermelon hover:bg-carbon-200 pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition"
 			>
