@@ -1,14 +1,9 @@
 <script lang="ts">
 	import NavLink from './NavLink.svelte';
 	import Modal from './Modal.svelte';
+	import { links } from '../../stores/links';
 	import { showModal } from '../../stores/modalStore';
 	import 'iconify-icon';
-
-	const links = [
-		['Puzzles', '/puzzles'],
-		['Editor', '/editor'],
-		['About', '/about']
-	];
 </script>
 
 <div class={$showModal ? 'flex flex-col h-screen' : ''}>
