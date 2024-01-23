@@ -1,5 +1,11 @@
 <script>
+	/**
+	 * @type {any}
+	 */
 	export let href;
+	/**
+	 * @type {any}
+	 */
 	export let text;
 </script>
 
