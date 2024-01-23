@@ -2,6 +2,7 @@
 	import { links } from '../../stores/links';
 	import { quintOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
+	import { showModal } from '../../stores/modalStore';
 </script>
 
 <div
@@ -12,6 +13,7 @@
 		{#if link[0] !== 'Editor'}
 			<a
 				href={link[1]}
+				on:click={() => showModal.set(!$showModal)}
 				class="text-2xl p-4 underline underline-offset-4 hover:text-carbon-200 hover:decoration-carbon-200 decoration-paper"
 				>{link[0]}</a
 			>

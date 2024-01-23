@@ -26,7 +26,7 @@
 			{/each}
 		</div>
 		<button
-			on:click={(e) => {
+			on:click={() => {
 				showModal.set(!$showModal);
 			}}
 		>
