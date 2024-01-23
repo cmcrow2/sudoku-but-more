@@ -7,7 +7,7 @@
 	<!-- <Sidebar /> -->
 	<div class="w-full">
 		<Header />
-		<h1 class="ml-4">Welcome to Sudoku But More</h1>
+		<h1 class="ml-4">Welcome to Variance, a Variant Sudoku App!</h1>
 		<p class="m-4">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus, nisl a scelerisque
 			pellentesque, libero risus faucibus leo, in rutrum augue nisl vitae turpis. Sed a faucibus
