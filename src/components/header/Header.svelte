@@ -20,7 +20,9 @@
 					: 'hover:bg-watermelon hover:text-paper bg-sky-300'}">Variance</a
 			>
 			{#each links as link}
-				<NavLink href={link[1]} text={link[0]} />
+				{#if link[0] !== 'Home'}
+					<NavLink href={link[1]} text={link[0]} />
+				{/if}
 			{/each}
 		</div>
 		<button
