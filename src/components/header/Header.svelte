@@ -8,7 +8,7 @@
 
 <div class={$showModal ? 'flex flex-col h-screen sticky top-0 z-50 ' : 'sticky top-0 z-50 '}>
 	<div
-		class="flex items-center justify-between flex-wrap bg-paper p-6 text-xl font-bold {$showModal
+		class="flex items-center justify-between flex-wrap bg-paper p-4 text-xl font-bold {$showModal
 			? 'border-none'
 			: 'border-b border-carbon-200'}"
 	>
@@ -42,14 +42,14 @@
 				/>
 			{/if}
 		</button>
-		<div class="flex-row hidden md:flex">
+		<div class="flex-col hidden md:flex">
 			<div
-				class="hover:text-watermelon hover:underline decoration-watermelon hover:bg-carbon-200 pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition"
+				class="flex justify-center font-normal text-sm hover:text-watermelon hover:underline decoration-watermelon hover:bg-carbon-200 pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition"
 			>
 				Log In
 			</div>
 			<div
-				class="hover:text-watermelon hover:underline decoration-watermelon hover:bg-carbon-200 pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition"
+				class="flex justify-center font-normal text-sm hover:text-watermelon hover:underline decoration-watermelon hover:bg-carbon-200 pt-2 pb-2 pl-4 pr-4 rounded-3xl hover:bg-opacity-5 transition"
 			>
 				Sign Up
 			</div>
