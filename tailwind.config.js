@@ -14,6 +14,9 @@ export default {
 				},
 				watermelon: '#FF3B3F',
 				paper: '#EFEFEF'
+			},
+			fontFamily: {
+				hepta: ['Hepta Slab']
 			}
 		}
 	},
