@@ -14,6 +14,9 @@
 	>
 		<div class="flex flex-row">
 			<a
+				on:click={() => {
+					showModal.set(false);
+				}}
 				href="/"
 				class="font-hepta font-medium pt-2 pb-2 pl-2 pr-2 scale-125 mr-8 ml-4 hover:text-paper hover:cursor-pointer transition-all {$showModal
 					? 'hover:text-watermelon hover:underline decoration-watermelon'
