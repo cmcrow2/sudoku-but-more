@@ -108,7 +108,7 @@
 		What Can You Do?
 	</h1>
 	<hr class="border-1 border-carbon-200" />
-	<p class="flex justify-center content-center text-lg mt-4 mb-20">
+	<p class="flex justify-center content-center text-lg mt-4 pb-10">
 		Create an account with us to solve any of the puzzles we've collected for you, or create your
 		own puzzle with a custom ruleset of your choosing! Add your friends and share the puzzles you
 		love with them, and compare your solve times to see who is objectively smarter!
