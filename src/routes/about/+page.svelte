@@ -48,7 +48,7 @@
 				<img
 					{src}
 					alt="A person playing Sudoku"
-					class="lg:flex w-[50%] h-[calc(100vh-20rem)] object-cover overflow-hidden hidden"
+					class="lg:flex w-[50%] h-[calc(100vh-19rem)] object-cover overflow-hidden hidden"
 				/>
 				<div class="flex md:w-fit flex-col w-[65%] m-auto my-[8rem]">
 					<svg
@@ -96,10 +96,21 @@
 		Our Goal
 	</h1>
 	<hr class="border-1 border-carbon-200" />
-	<p class="flex justify-center content-center text-lg mt-4 mb-20">
+	<p class="flex justify-center content-center text-lg mt-4">
 		We want make all aspects of playing and creating Sudoku Puzzles as accessible as possible. To do
 		so, we want the majority of our Puzzle Archive to be created by you! Whether you have created
 		zero Sudoku puzzles or a thousand, we encourage you to use our Editor and send your puzzles to
 		your friends to try!
+	</p>
+	<h1
+		class="flex justify-center content-center text-md mb-4 mt-14 bg-sky-300 w-fit m-auto pl-2 pr-2 pt-1 pb-1 bg-opacity-25 rounded-sm"
+	>
+		What Can You Do?
+	</h1>
+	<hr class="border-1 border-carbon-200" />
+	<p class="flex justify-center content-center text-lg mt-4 mb-20">
+		Create an account with us to solve any of the puzzles we've collected for you, or create your
+		own puzzle with a custom ruleset of your choosing! Add your friends and share the puzzles you
+		love with them, and compare your solve times to see who is objectively smarter!
 	</p>
 </div>
