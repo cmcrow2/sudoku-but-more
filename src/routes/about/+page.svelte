@@ -1,6 +1,6 @@
 <script>
 	import { quintOut } from 'svelte/easing';
-	import { draw } from 'svelte/transition';
+	import { draw, fade, fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
 	let isLoaded = false;
@@ -35,42 +35,44 @@
 <svelte:window on:scroll={updateY} bind:scrollY={y} />
 
 <div class="h-[calc(100vh-5rem)] flex flex-col">
-	{#if y === 0}
-		<div class="w-full bg-watermelon">
-			<h1
-				class="flex font-hepta text-[2rem] text-paper content-center justify-center underline underline-offset-4 decoration-paper decoration-2 w-fit h-fit m-auto pt-20 pb-20"
-			>
-				About
-			</h1>
-		</div>
-		<div class="flex flex-row">
-			<img
-				{src}
-				alt="A person playing Sudoku"
-				class="lg:flex w-[50%] h-[calc(100vh-20rem)] object-cover overflow-hidden hidden"
-			/>
-			<div class="flex md:w-fit flex-col w-[65%] m-auto my-[8rem]">
-				<svg
-					viewBox="0 0 5 5"
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-[20vh] flex justify-center content-center align-middle items-end"
+	{#if y < 100}
+		<div in:fly={{ y: -300, duration: 500 }} out:fly={{ y: -300, duration: 500 }}>
+			<div class="w-full bg-watermelon">
+				<h1
+					class="flex font-hepta text-[2rem] text-paper content-center justify-center underline underline-offset-4 decoration-paper decoration-2 w-fit h-fit m-auto pt-20 pb-20"
 				>
-					{#if isLoaded}
-						<path
-							transition:draw={{ duration: 3250, delay: 200, easing: quintOut }}
-							d="M 2.5 4 L 1 1 L 1.5 1 L 2.5 4 L 3.5 1 L 4 1 L 2.5 4"
-							fill="none"
-							stroke="black"
-							stroke-width="0.07500px"
-							stroke-linejoin="round"
-						/>
-					{/if}
-				</svg>
-				<p
-					class="flex justify-center align-top text-center text-2xl md:text-[2rem] w-fit m-auto my-10 font-hepta"
-				>
-					Welcome, fellow Sudoku lovers!
-				</p>
+					About
+				</h1>
+			</div>
+			<div class="flex flex-row">
+				<img
+					{src}
+					alt="A person playing Sudoku"
+					class="lg:flex w-[50%] h-[calc(100vh-20rem)] object-cover overflow-hidden hidden"
+				/>
+				<div class="flex md:w-fit flex-col w-[65%] m-auto my-[8rem]">
+					<svg
+						viewBox="0 0 5 5"
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-[20vh] flex justify-center content-center align-middle items-end"
+					>
+						{#if isLoaded}
+							<path
+								transition:draw={{ duration: 3250, delay: 200, easing: quintOut }}
+								d="M 2.5 4 L 1 1 L 1.5 1 L 2.5 4 L 3.5 1 L 4 1 L 2.5 4"
+								fill="none"
+								stroke="black"
+								stroke-width="0.07500px"
+								stroke-linejoin="round"
+							/>
+						{/if}
+					</svg>
+					<p
+						class="flex justify-center align-top text-center text-2xl md:text-[2rem] w-fit m-auto my-10 font-hepta"
+					>
+						Welcome, fellow Sudoku lovers!
+					</p>
+				</div>
 			</div>
 		</div>
 	{/if}
