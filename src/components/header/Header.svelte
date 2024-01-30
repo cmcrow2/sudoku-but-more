@@ -8,9 +8,7 @@
 
 <div class={$showModal ? 'flex flex-col h-screen sticky top-0 z-50 ' : 'sticky top-0 z-50 '}>
 	<div
-		class="flex items-center justify-between flex-wrap bg-paper p-4 text-xl font-bold {$showModal
-			? 'border-none'
-			: 'border-b border-carbon-200'}"
+		class="flex items-center justify-between flex-wrap bg-paper p-4 text-xl font-bold border-carbon-200 border-b-2"
 	>
 		<div class="flex flex-row">
 			<a
