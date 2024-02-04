@@ -14,7 +14,6 @@
 
 	onMount(() => {
 		isLoaded = true;
-		console.log('Hey');
 	});
 </script>
 
@@ -33,7 +32,6 @@
 		{/if}
 	</svg>
 	<div class="flex flex-col text-center m-10 mt-0 items-center">
-		<hr class="flex m-4 border-watermelon mt-0" />
 		<p class="mb-5">Hey, how'd you get here?</p>
 		<p class="mb-5">This page is not supported on mobile or small screens.</p>
 		<a
