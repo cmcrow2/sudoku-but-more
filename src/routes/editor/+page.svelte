@@ -14,7 +14,6 @@
 
 	onMount(() => {
 		isLoaded = true;
-		console.log('Hey');
 	});
 </script>
 

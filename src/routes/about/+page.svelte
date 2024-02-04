@@ -7,7 +7,6 @@
 
 	onMount(() => {
 		isLoaded = true;
-		console.log('Hey');
 	});
 
 	let src = 'src/static/images/about.png';
