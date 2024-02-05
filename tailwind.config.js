@@ -14,6 +14,18 @@ export default {
 				},
 				watermelon: '#FF3B3F',
 				paper: '#EFEFEF'
+			},
+			fontFamily: {
+				hepta: ['Hepta Slab']
+			},
+			animation: {
+				border: 'border 4s ease infinite'
+			},
+			keyframes: {
+				border: {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
+				}
 			}
 		}
 	},
