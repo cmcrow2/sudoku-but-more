@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { showModal } from '../stores/modalStore';
 	import Header from '../components/header/Header.svelte';
+	import Footer from '../components/Footer.svelte';
 	import { fade, fly } from 'svelte/transition';
 
 	export let data;
@@ -15,9 +16,14 @@
 		<Header />
 		<div class={$showModal ? 'hidden' : ''}>
 			{#key data.url}
-				<div in:fade={{ duration: 300, delay: 300 }} out:fly={{ duration: 300 }}>
+				<div
+					in:fade={{ duration: 300, delay: 300 }}
+					out:fly={{ duration: 300 }}
+					class="min-h-[calc(100vh-18.4rem)] mb-10"
+				>
 					<slot />
 				</div>
+				<Footer />
 			{/key}
 		</div>
 	</div>
