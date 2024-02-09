@@ -1,9 +1,9 @@
 <script lang="ts">
-	import NavLink from './NavLink.svelte';
-	import Modal from '$lib/components/Modal.svelte';
-	import { links } from '$lib/stores/links';
-	import { showModal } from '$lib/stores/modalStore';
 	import 'iconify-icon';
+	import NavLink from '$lib/components/NavLink.svelte'
+	import Modal from '$lib/components/Modal.svelte'
+	import { links } from '$lib/stores/links'
+	import { showModal } from '$lib/stores/modalStore'
 </script>
 
 <div class={$showModal ? 'flex flex-col h-screen sticky top-0 z-50 ' : 'sticky top-0 z-50 '}>
