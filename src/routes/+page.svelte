@@ -1,6 +1,5 @@
 <script lang="ts">
 	import StandardBoard from '$lib/components/Boards/StandardBoard.svelte'
-	import Header from '$lib/components/Header.svelte';
 	// import Sidebar from '$lib/components/Sidebar.svelte';
 	import { showModal } from '$lib/stores/modalStore';
 </script>
@@ -8,7 +7,6 @@
 <div class="flex h-full gap-x-2">
 	<!-- <Sidebar /> -->
 	<div class="w-full h-full">
-		<Header />
 		<div class={$showModal ? 'hidden' : ''}>
 			<h1 class="ml-4 mt-4">Welcome to Variance, a Variant Sudoku App!</h1>
 			<StandardBoard />
