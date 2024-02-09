@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
-	import { showModal } from '../stores/modalStore';
-	import Header from '../components/header/Header.svelte';
+	import { showModal } from '$lib/stores/modalStore';
+	import Header from '$lib/components/Header.svelte';
 	import { fade, fly } from 'svelte/transition';
 
 	export let data;

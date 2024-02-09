@@ -2,7 +2,7 @@
 	import StandardBoard from '$lib/components/Boards/StandardBoard.svelte'
 	import Header from '$lib/components/Header.svelte';
 	// import Sidebar from '$lib/components/Sidebar.svelte';
-	import { showModal } from '../stores/modalStore';
+	import { showModal } from '$lib/stores/modalStore';
 </script>
 
 <div class="flex h-full gap-x-2">

@@ -1,8 +1,8 @@
 <script>
-	import { links } from '../../stores/links';
+	import { links } from '$lib/stores/links';
 	import { quintOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
-	import { showModal } from '../../stores/modalStore';
+	import { showModal } from '$lib/stores/modalStore';
 </script>
 
 <div
