@@ -1,4 +1,4 @@
-import type { Cell } from '$lib/database/gamestate'
+import type { Gamestate } from '$lib/database/gamestate'
 import { writable } from 'svelte/store'
 
-export const activePuzzle = writable<Cell | null>(null)
+export const activePuzzle = writable<Gamestate | null>(null)
