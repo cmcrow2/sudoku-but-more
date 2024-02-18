@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getPuzzle } from '$lib/database/database'
+	import { isBoardValid } from '$lib/gameplay/boardValidation'
 	import type { Gamestate } from '$lib/database/gamestate'
 
 	let activePuzzle: Gamestate | null
@@ -101,6 +102,7 @@
 				{/each}
 			{/each}
 		</div>
+		<div>Is puzzle valid? -- {isBoardValid(activePuzzle)}</div>
 	{:else}
 		<div>No puzzle loaded!</div>
 	{/if}
