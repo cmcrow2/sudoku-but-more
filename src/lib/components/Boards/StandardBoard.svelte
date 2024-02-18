@@ -7,8 +7,6 @@
 	let selectedCol: number
 	let selectedRow: number
 
-	// $: activePuzzle = null
-
 	async function setPuzzle(id: number) {
 		const puzzle = await getPuzzle(id)
 		activePuzzle = puzzle
