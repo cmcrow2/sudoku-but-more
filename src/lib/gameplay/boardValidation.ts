@@ -17,11 +17,11 @@ export function isBoardValid(gamestate: Gamestate): boolean {
 function isStandardBoardValid(board: Array<Array<Cell>>): boolean {
 
     // ROWS
-    // for (let row of board) {
-    //     if (!isRegionComplete(row)) {
-    //         return false
-    //     }
-    // }
+    for (let row of board) {
+        if (!isRegionComplete(row)) {
+            return false
+        }
+    }
 
     // COLS
     for (let i = 0; i < 9; i++) {
