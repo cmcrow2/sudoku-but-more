@@ -17,19 +17,18 @@ export function isBoardValid(gamestate: Gamestate): boolean {
 function isStandardBoardValid(board: Array<Array<Cell>>): boolean {
 
     // ROWS
-    for (let row of board) {
-        if (!isRegionComplete(row)) {
-            return false
-        }
-    }
+    // for (let row of board) {
+    //     if (!isRegionComplete(row)) {
+    //         return false
+    //     }
+    // }
 
     // COLS
     for (let i = 0; i < 9; i++) {
         let col = []
         for (let j = 0; j < 9; j++) {
-            col.push(board[i][j])
+            col.push(board[j][i])
         }
-        console.log("validating...", col)
         if (!isRegionComplete(col)) {
             return false
         }
