@@ -13,16 +13,14 @@
 	}
 </script>
 
-<div>
+<div class="text-center">
 	<button on:click={() => setPuzzle(1)}>Load Puzzle</button>
 	{#if activePuzzle}
 		<div class="board">
 			{#each activePuzzle.board as cols}
-				<div class="row">
-					{#each cols as cell}
-						<div class="cell">{cell.value === '-' ? '' : cell.value}</div>
-					{/each}
-				</div>
+				{#each cols as cell}
+					<div class="block">{cell.value === '-' ? '' : cell.value}</div>
+				{/each}
 			{/each}
 		</div>
 	{:else}
@@ -32,21 +30,51 @@
 
 <style>
 	.board {
-		display: flex;
-		flex-direction: column;
+		width: min-content;
+		height: min-content;
+		margin: auto;
+		display: grid;
+		grid-template-columns: repeat(9, 1fr);
+		grid-template-rows: repeat(9, 1fr);
+		grid-gap: 2px;
+		cursor: pointer;
 	}
 
-	.row {
+	.block {
+		box-shadow: 0 0 0 2px black;
+		width: 50px;
+		height: 50px;
+		padding: 0;
+		margin: 0;
 		display: flex;
-		flex-direction: row;
-	}
-
-	.cell {
-		border: 1px solid black;
-		padding: 5px;
-		width: 30px;
-		height: 30px;
-		text-align: center;
 		justify-content: center;
+		align-content: center;
+		flex-direction: column;
+		user-select: none;
+		border-collapse: collapse;
+		box-sizing: border-box;
+	}
+
+	.block:nth-child(3n) {
+		border-right: 2px solid black;
+	}
+	.block:nth-child(9n-8) {
+		border-left: 2px solid black;
+	}
+	.block:nth-child(-n+9) {
+		border-top: 2px solid black;
+	}
+	.block:nth-child(n+19):nth-child(-n+27) {
+		border-bottom: 2px solid black;
+	}
+	.block:nth-child(n+46):nth-child(-n+54) {
+		border-bottom: 2px solid black;
+	}
+	.block:nth-child(n+73) {
+		border-bottom: 2px solid black;
+	}
+
+	.block:hover {
+		background-color: lightgrey;
 	}
 </style>
