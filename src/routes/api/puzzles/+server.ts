@@ -20,7 +20,7 @@ const jsonGamestateConverter = (jsonState: GamestateJson): Gamestate => {
     let row: Array<Cell> = new Array()
     chars.forEach((c, i) => {
         const value = c === '-' ? c : parseInt(c)
-        row.push({ value })
+        row.push({ value, initialValue: value })
         if ((i + 1) % 9 === 0) {
             board.push(row)
             row = new Array()

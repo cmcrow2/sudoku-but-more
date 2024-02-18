@@ -5,6 +5,7 @@ export type Difficulty = "easy" | "medium" | "hard"
 // Add additional attributes here for background highlighting and other markup
 export interface Cell {
     value: number | '-'
+    initialValue: number | '-'
 }
 
 export interface Gamestate {

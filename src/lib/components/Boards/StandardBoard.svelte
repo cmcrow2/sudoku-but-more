@@ -21,21 +21,61 @@
 
 	function handleKeyPress(e: { keyCode: number }) {
 		let num: number | '-'
-		if (e.keyCode >= 49 && e.keyCode <=57) {
+		if (e.keyCode >= 49 && e.keyCode <= 57) {
 			num = e.keyCode - 48
 		} else if (e.keyCode >= 97 && e.keyCode <= 105) {
 			num = e.keyCode - 96
-		} else if (e.keyCode == 8 || e.keyCode == 46 || e.keyCode == 109 || e.keyCode == 189) {
+		} else if (e.keyCode === 8 || e.keyCode === 46 || e.keyCode === 109 || e.keyCode === 189) {
 			num = '-'
 		} else {
 			return
 		}
 		if (activePuzzle && selectedCol !== undefined && selectedRow !== undefined) {
 			console.log(`setting value of ${selectedRow}, ${selectedCol} to ${num}`)
+			if (activePuzzle.board[selectedRow][selectedCol].initialValue !== '-') {
+				console.log('You cannot change a given value!')
+				return
+			}
 			activePuzzle.board[selectedRow][selectedCol].value = num
 		}
 	}
 
+	function isSelectedDifferentCell(row: number, col: number): boolean {
+		// Validate a cell is selected and it's different from the one in question
+		if (selectedRow === undefined || selectedCol === undefined) {
+			return false
+		}
+		if (row === selectedRow && col === selectedCol) {
+			return false
+		}
+		return true
+	}
+
+	function isInSameRegion(row: number, col: number): boolean {
+		if (!isSelectedDifferentCell(row, col)) {
+			return false
+		}
+
+		// Check if cells are in the same col, row, or region
+		if (selectedRow === row || selectedCol === col) {
+			return true
+		} else if (~~(selectedCol / 3) == ~~(col / 3) && ~~(selectedRow / 3) == ~~(row / 3)) {
+			return true
+		}
+		return false
+	}
+
+	function isSameValue(row: number, col: number): boolean {
+		if (!isSelectedDifferentCell(row, col)) {
+			return false
+		}
+
+		const selectedValue = activePuzzle?.board[selectedRow][selectedCol].value
+		if (selectedValue !== '-' && activePuzzle?.board[row][col].value === selectedValue) {
+			return true
+		}
+		return false
+	}
 </script>
 
 <svelte:window on:keydown|preventDefault={handleKeyPress} />
@@ -47,7 +87,11 @@
 			{#each activePuzzle.board as rows, rowIndex}
 				{#each rows as cell, colIndex}
 					<div
-						class="block {selectedRow == rowIndex && selectedCol == colIndex ? "selected" : ""}"
+						class="block
+							{isInSameRegion(rowIndex, colIndex) ? 'selected-region' : ''}
+							{isSameValue(rowIndex, colIndex) ? 'selected-value' : ''}
+							{selectedRow === rowIndex && selectedCol === colIndex ? 'selected' : ''}
+							{cell.initialValue !== '-' ? 'initialValue' : ''}"
 						on:click={() => selectCell(colIndex, rowIndex)}
 						role="button"
 						tabindex={rowIndex * 9 + colIndex}
@@ -89,6 +133,8 @@
 		box-sizing: border-box;
 		position: relative;
 		outline: none;
+		font-size: 2.5em;
+		font-weight: 400;
 	}
 
 	.block:nth-child(3n) {
@@ -111,16 +157,22 @@
 	}
 
 	.block:hover {
-		background-color: lightgrey;
+		background-color: theme('colors.sky.100');
 	}
 
-	.selected:after {
-		position: absolute;
-		content: '';
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		box-shadow: inset 0 0 0 4px skyblue;
+	.selected {
+		background-color: theme('colors.sky.400');
+	}
+
+	.selected-region {
+		background-color: theme('colors.sky.200');
+	}
+
+	.selected-value {
+		background-color: theme('colors.sky.400')
+	}
+
+	.initialValue {
+		font-weight: bold;
 	}
 </style>
