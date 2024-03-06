@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { getPuzzle } from '$lib/database/database'
 	import { isBoardValid } from '$lib/gameplay/boardValidation'
-	import type { Gamestate } from '$lib/database/gamestate'
+	import type { CellKey, Gamestate} from '$lib/database/gamestate'
+	import { rowHeaders, colHeaders } from '$lib/database/gamestate'
+	import { cross } from '$lib/util/board'
 
 	let activePuzzle: Gamestate | null
-	let selectedCol: number
-	let selectedRow: number
+	let selectedCell: CellKey
 
 	async function setPuzzle(id: number) {
 		const puzzle = await getPuzzle(id)
@@ -13,64 +14,65 @@
 		console.log('loaded puzzle!', activePuzzle)
 	}
 
-	function selectCell(col: number, row: number) {
-		selectedCol = col
-		selectedRow = row
+	function selectCell(cell: CellKey) {
+		selectedCell = cell
 	}
 
 	function handleKeyPress(e: { keyCode: number }) {
-		let num: number | '-'
+		let num: number | null
 		if (e.keyCode >= 49 && e.keyCode <= 57) {
 			num = e.keyCode - 48
 		} else if (e.keyCode >= 97 && e.keyCode <= 105) {
 			num = e.keyCode - 96
 		} else if (e.keyCode === 8 || e.keyCode === 46 || e.keyCode === 109 || e.keyCode === 189) {
-			num = '-'
+			num = null
 		} else {
 			return
 		}
-		if (activePuzzle && selectedCol !== undefined && selectedRow !== undefined) {
-			console.log(`setting value of ${selectedRow}, ${selectedCol} to ${num}`)
-			if (activePuzzle.board[selectedRow][selectedCol].initialValue !== '-') {
+		if (activePuzzle && selectedCell !== undefined) {
+			console.log(`setting value of ${selectedCell} to ${num}`)
+			if (activePuzzle.board[selectedCell].initialValue !== null) {
 				console.log('You cannot change a given value!')
 				return
 			}
-			activePuzzle.board[selectedRow][selectedCol].value = num
+			activePuzzle.board[selectedCell].value = num
 		}
 	}
 
-	function isSelectedDifferentCell(row: number, col: number): boolean {
-		// Validate a cell is selected and it's different from the one in question
-		if (selectedRow === undefined || selectedCol === undefined) {
-			return false
-		}
-		if (row === selectedRow && col === selectedCol) {
-			return false
-		}
-		return true
+	function hasInitialValue(cell: CellKey): boolean {
+		return activePuzzle?.board[cell].initialValue !== null
 	}
 
-	function isInSameRegion(row: number, col: number): boolean {
-		if (!isSelectedDifferentCell(row, col)) {
+	function isInSameRegion(cell: CellKey): boolean {
+		if (cell === selectedCell) {
 			return false
 		}
 
-		// Check if cells are in the same col, row, or region
-		if (selectedRow === row || selectedCol === col) {
-			return true
-		} else if (~~(selectedCol / 3) == ~~(col / 3) && ~~(selectedRow / 3) == ~~(row / 3)) {
-			return true
+		const rows = colHeaders.map((col) => cross(rowHeaders, col))
+    	const cols = rowHeaders.map((row) => cross(row, colHeaders))
+
+		const units = []
+		for (const rowGroup of ['ABC', 'DEF', 'GHI']) {
+			for (const colGroup of ['123', '456', '789']) {
+				units.push(cross(rowGroup, colGroup))
+			}
 		}
+		for (const unit of [...units, ...rows, ...cols]) {
+			if (unit.includes(cell) && unit.includes(selectedCell)) {
+				return true
+			}
+		}
+
 		return false
 	}
 
-	function isSameValue(row: number, col: number): boolean {
-		if (!isSelectedDifferentCell(row, col)) {
+	function isSameValue(cell: CellKey): boolean {
+		if (selectedCell === undefined || cell === selectedCell) {
 			return false
 		}
 
-		const selectedValue = activePuzzle?.board[selectedRow][selectedCol].value
-		if (selectedValue !== '-' && activePuzzle?.board[row][col].value === selectedValue) {
+		const selectedValue = activePuzzle?.board[selectedCell].value
+		if (selectedValue !== null && activePuzzle?.board[cell].value === selectedValue) {
 			return true
 		}
 		return false
@@ -83,19 +85,19 @@
 	<button on:click={() => setPuzzle(1)}>Load Puzzle</button>
 	{#if activePuzzle}
 		<div class="board">
-			{#each activePuzzle.board as rows, rowIndex}
-				{#each rows as cell, colIndex}
+			{#each rowHeaders as row, rowIndex}
+				{#each colHeaders as col, colIndex}
 					<div
 						class="block
-							{isInSameRegion(rowIndex, colIndex) ? 'selected-region' : ''}
-							{isSameValue(rowIndex, colIndex) ? 'selected-value' : ''}
-							{selectedRow === rowIndex && selectedCol === colIndex ? 'selected' : ''}
-							{cell.initialValue !== '-' ? 'initialValue' : ''}"
-						on:click={() => selectCell(colIndex, rowIndex)}
+							{isInSameRegion(`${row}${col}`) ? 'selected-region' : ''}
+							{isSameValue(`${row}${col}`) ? 'selected-value' : ''}
+							{`${row}${col}` === selectedCell ? 'selected' : ''}
+							{hasInitialValue(`${row}${col}`) ? 'initialValue' : ''}"
+						on:click={() => selectCell(`${row}${col}`)}
 						role="button"
 						tabindex={rowIndex * 9 + colIndex}
 					>
-						{cell.value === '-' ? '' : cell.value}
+						{activePuzzle.board[`${row}${col}`].value === null ? '' : activePuzzle.board[`${row}${col}`].value}
 					</div>
 				{/each}
 			{/each}

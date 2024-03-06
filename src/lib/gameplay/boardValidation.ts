@@ -14,30 +14,38 @@ export function isBoardValid(gamestate: Gamestate): boolean {
 
 // STANDARD
 
-function isStandardBoardValid(board: Array<Array<Cell>>): boolean {
+function isStandardBoardValid(board: Record<string, Cell>): boolean {
+    const rowHeaders = 'ABCDEFGHI'
+    const colHeaders = '123456789'
 
-    // ROWS
-    for (let row of board) {
-        if (!isRegionComplete(row)) {
+    function cross(a: string, b: string) {
+      return [...a].map((aa) => {
+        return [...b].map((bb) => {
+          return aa + bb
+        })
+      }).flat()
+    }
+
+    const rows = [...colHeaders].map((col) => cross(rowHeaders, col))
+    const cols = [...rowHeaders].map((row) => cross(row, colHeaders))
+    const blocks = []
+    for (const rowGroup of ['ABC', 'DEF', 'GHI']) {
+      for (const colGroup of ['123', '456', '789']) {
+        blocks.push(cross(rowGroup, colGroup))
+      }
+    }
+
+    for (const unit of [...rows, ...cols, ...blocks]) {
+        if (!isUnitValid(board, unit)) {
             return false
         }
     }
 
-    // COLS
-    for (let i = 0; i < 9; i++) {
-        let col = []
-        for (let j = 0; j < 9; j++) {
-            col.push(board[j][i])
-        }
-        if (!isRegionComplete(col)) {
-            return false
-        }
-    }
     return true
 }
 
-function isRegionComplete(region: Array<Cell>): boolean {
-    const values = region.map((cell) => cell.value)
+function isUnitValid(board: Record<string, Cell>, unit: string[]): boolean {
+    const values = unit.map((cellKey) => board[cellKey].value)
 
     for (let i = 1; i <= 9; i++) {
         if (!values.includes(i)) {
@@ -49,6 +57,6 @@ function isRegionComplete(region: Array<Cell>): boolean {
 
 // KILLER
 
-function isKillerBoardValid(board: Array<Array<Cell>>): boolean {
+function isKillerBoardValid(board: Record<string, Cell>): boolean {
     return false
 }

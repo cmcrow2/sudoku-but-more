@@ -14,18 +14,19 @@ interface GamestateJson {
 // Likely a temporary method until we have a database. We can store the full detailed
 // object as JSON in the database. This makes it easier to manually add puzzles
 const jsonGamestateConverter = (jsonState: GamestateJson): Gamestate => {
-    const board: Array<Array<Cell>> = new Array()
+    const board: Record<string, Cell> = {}
     const chars = [...jsonState.board]
 
-    let row: Array<Cell> = new Array()
-    chars.forEach((c, i) => {
-        const value = c === '-' ? c : parseInt(c)
-        row.push({ value, initialValue: value })
-        if ((i + 1) % 9 === 0) {
-            board.push(row)
-            row = new Array()
+    let jsonBoardIndex = 0
+    for (const col of 'ABCDEFGHI') {
+        for (const row of '123456789') {
+            const gamestateBoardIndex = col + row
+            const value = chars[jsonBoardIndex] === '-' ? null : parseInt(chars[jsonBoardIndex])
+            board[gamestateBoardIndex] = { value, initialValue: value }
+            jsonBoardIndex += 1
         }
-    })
+    }
+
     return {
         id: jsonState.id,
         difficultyRating: jsonState.difficulty as Difficulty,
