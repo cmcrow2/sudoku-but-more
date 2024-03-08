@@ -5,5 +5,12 @@
         "description": "from wikipedia",
         "ruleset": "standard",
         "board": "53--7----6--195----98----6-8---6---34--8-3--17---2---6-6----28----419--5----8--79"
+    },
+    {
+        "id": 2,
+        "difficulty": "easy",
+        "description": "from sudoku.com",
+        "ruleset": "standard",
+        "board": "86---4------9--8--3-4----6762--45791539-814-6--7-29-----3--6----5-4---89---5-76-2"
     }
 ]

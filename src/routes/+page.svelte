@@ -1,8 +1,4 @@
-<script>
-	import StandardBoard from "$lib/components/Boards/StandardBoard.svelte"
-</script>
 <div>
-	<StandardBoard />
 	<p class="m-4">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dapibus, nisl a scelerisque
 		pellentesque, libero risus faucibus leo, in rutrum augue nisl vitae turpis. Sed a faucibus
