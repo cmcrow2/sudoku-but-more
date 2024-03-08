@@ -18,7 +18,7 @@
 		selectedCell = cell
 	}
 
-	function handleKeyPress(e: { keyCode: number }) {
+	$: handleKeyPress = (e: { keyCode: number }) => {
 		let num: number | null
 		if (e.keyCode >= 49 && e.keyCode <= 57) {
 			num = e.keyCode - 48
@@ -39,11 +39,11 @@
 		}
 	}
 
-	function hasInitialValue(cell: CellKey): boolean {
+	$: hasInitialValue = (cell: CellKey): boolean => {
 		return activePuzzle?.board[cell].initialValue !== null
 	}
 
-	function isInSameRegion(cell: CellKey): boolean {
+	$: isInSameRegion = (cell: CellKey): boolean => {
 		if (cell === selectedCell) {
 			return false
 		}
@@ -79,12 +79,10 @@
 	}
 </script>
 
-<svelte:window on:keydown|preventDefault={handleKeyPress} />
-
 <div class="text-center">
-	<button on:click={() => setPuzzle(1)}>Load Puzzle</button>
+	<button on:click={() => setPuzzle(2)}>Load Puzzle</button>
 	{#if activePuzzle}
-		<div class="board">
+		<div class="board" on:keydown|preventDefault={handleKeyPress} role="button" tabindex="0">
 			{#each rowHeaders as row, rowIndex}
 				{#each colHeaders as col, colIndex}
 					<div
